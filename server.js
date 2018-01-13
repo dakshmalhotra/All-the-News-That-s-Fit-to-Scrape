@@ -1,12 +1,12 @@
 //////////////////////////////////////////////// /* Imports */ //////////////////////////////////////////////////////////
-import express from 'express'; // Express Server
-import bodyParser from 'body-parser'; // Post Body Request
-import request from 'request'; // Http Requests
-import exphbs from 'express-handlebars'; // Templating Engine
-
-// import cheerio from 'cheerio'; // Web Scrapper
-// import mongoose from 'mongoose'; // MongoDB ORM
-// import db from "./models"; // Require all models
+let express = require('express'); // Express Server
+let bodyParser = require('body-parser'); // Post Body Request
+let exphbs = require('express-handlebars'); // Templating Engine
+let logger = require("morgan"); // Logger
+var db = require("./models"); // Require all models
+// let cheerio = require('cheerio'; // Web Scrapper
+// let mongoose = require('mongoose'; // MongoDB ORM
+// let db from "./models"; // Require all models
 
 /////////////////////////////////////////////// /* Set Up Variables*/ //////////////////////////////////////////////////////////
 
