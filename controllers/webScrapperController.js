@@ -1,0 +1,31 @@
+/////////////////////////////////////////////// /* Imports */ //////////////////////////////////////////////////////////
+import path from 'path';
+import cheerio from 'cheerio'; // Web Scrapper
+import mongoose from 'mongoose'; // MongoDB ORM
+import db from "./models"; // Require all models
+
+
+/////////////////////////////////////////////// /* Mongoose Configuration */ //////////////////////////////////////////////////////////
+mongoose.Promise = Promise; // Set mongoose to leverage built in JavaScript ES6 Promises
+mongoose.connect("mongodb://localhost/webScrapper", { // Connect to the Mongo DB
+  useMongoClient: true
+});
+
+let mongooseConnection = mongoose.connection;
+mongooseConnection.on('error', console.error.bind(console, 'connection error:'));
+mongooseConnection.once('open', function() {
+  console.log(`Sucessfully Connected to Mongo DB !`);
+});
+
+/////////////////////////////////////////////// /* Exports */ //////////////////////////////////////////////////////////
+module.exports = (app) => { // Export Module Containing Routes. Called from Server.js
+
+  /////////////////////////////////////////////// /* Get Requests */ //////////////////////////////////////////////////////////
+
+
+  /////////////////////////////////////////////// /* Post Requests */ //////////////////////////////////////////////////////////
+
+
+
+
+}
