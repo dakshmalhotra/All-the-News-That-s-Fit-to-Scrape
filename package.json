@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "babel": "babel --presets es2015 server.js -o build/main.bundle.js",
-    "start": "node main.bundle.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
