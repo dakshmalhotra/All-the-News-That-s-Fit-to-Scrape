@@ -88,6 +88,19 @@ $(document).ready(function() {
                   $(".boxComments").prepend(notesDiv);
                 }
 
+                $(".addComment").on("click", function() { // Event Listener for Adding Comments
+
+                  let note = $('#textarea1').val();
+
+                  let noteObject = {
+                    body: {
+                      body: note
+                    },
+                    articleID: {
+                      articleID: modalID
+                    }
+                  }
+
                 $(".deleteComment").on("click", function() { // Event Listener for Each Delete Note Button
 
                   let commentID = $(this).attr("data-id");
@@ -114,18 +127,6 @@ $(document).ready(function() {
 
           });
 
-          $(".addComment").on("click", function() { // Event Listener for Adding Comments
-
-            let note = $('#textarea1').val();
-
-            let noteObject = {
-              body: {
-                body: note
-              },
-              articleID: {
-                articleID: modalID
-              }
-            }
 
             console.log(noteObject);
 
