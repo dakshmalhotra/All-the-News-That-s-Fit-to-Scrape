@@ -2,7 +2,7 @@
 let express = require('express'); // Express Server
 let bodyParser = require('body-parser'); // Post Body Request
 let exphbs = require('express-handlebars'); // Templating Engine
-let logger = require("morgan"); // Logger
+// let logger = require("morgan"); // Logger
 var db = require("./models"); // Require all models
 // let cheerio = require('cheerio'; // Web Scrapper
 // let mongoose = require('mongoose'; // MongoDB ORM
