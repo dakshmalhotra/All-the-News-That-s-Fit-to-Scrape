@@ -47,7 +47,7 @@ $(document).ready(function() {
 
   }); // End addArticle Btn click
 
-  $('#savedArticles').on("click", () => { // Query for Saved Articles
+  $('.savedArticles').on("click", () => { // Query for Saved Articles
     console.log("Saved Button clicked");
     $(".collection").html("");
     $("#textarea1").val("");
