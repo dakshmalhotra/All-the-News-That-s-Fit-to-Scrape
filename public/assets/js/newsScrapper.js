@@ -104,7 +104,7 @@ $(document).ready(function() {
             body: JSON.stringify({articleID: modalID})
           }).then(response => response.json()).then((data) => {
             console.log("fetching data");
-            console.log("data is " + data)
+            console.log("data is " + JSON.stringify(data))
             $(".boxComments").html("");
             if (data.length >= 1) {
               data.map((comment) => {
