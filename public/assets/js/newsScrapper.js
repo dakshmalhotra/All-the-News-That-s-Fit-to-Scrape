@@ -48,7 +48,7 @@ $(document).ready(function() {
   }); // End addArticle Btn click
 
   $('#savedArticles').on("click", () => { // Query for Saved Articles
-    // console.log("Query Button clicked");
+    console.log("Saved Button clicked");
     $(".collection").html("");
 
     fetch("/api/savedArticles", {method: "GET"}).then(response => response.json()).then((response) => {
@@ -88,19 +88,6 @@ $(document).ready(function() {
                   $(".boxComments").prepend(notesDiv);
                 }
 
-                $(".addComment").on("click", function() { // Event Listener for Adding Comments
-
-                  let note = $('#textarea1').val();
-
-                  let noteObject = {
-                    body: {
-                      body: note
-                    },
-                    articleID: {
-                      articleID: modalID
-                    }
-                  }
-
                 $(".deleteComment").on("click", function() { // Event Listener for Each Delete Note Button
 
                   let commentID = $(this).attr("data-id");
@@ -127,6 +114,18 @@ $(document).ready(function() {
 
           });
 
+          $(".addComment").on("click", function() { // Event Listener for Adding Comments
+
+            let note = $('#textarea1').val();
+
+            let noteObject = {
+              body: {
+                body: note
+              },
+              articleID: {
+                articleID: modalID
+              }
+            }
 
             console.log(noteObject);
 
