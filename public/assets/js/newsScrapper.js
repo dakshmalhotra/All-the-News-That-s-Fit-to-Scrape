@@ -50,10 +50,11 @@ $(document).ready(function() {
   $('#savedArticles').on("click", () => { // Query for Saved Articles
     console.log("Saved Button clicked");
     $(".collection").html("");
+    $("#textarea1").val("");
 
     fetch("/api/savedArticles", {method: "GET"}).then(response => response.json()).then((response) => {
-      response.map(article => {
 
+      response.map(article => {
         let articleDiv = "<li id='" + article["_id"] + "' data-url='" + article.url + "' data-slug='" + article.slug + "' class='collection-item avatar hover modal-trigger' href='#articleModal'><img src='" + article.imageURL + "'class='circle'><span class='title'>" + article.headline + "</span><p>" + article.summary + "</P><a class='secondary-content deleteArticle'><i class='material-icons hoverRed'>delete_forever</i></a></li>";
         $(".collection").prepend(articleDiv);
 
@@ -90,7 +91,6 @@ $(document).ready(function() {
               },
               body: JSON.stringify(noteObject)
             }).then((response) => {
-              $("#textarea1").val("");
               location.reload();
             });
           });
@@ -141,7 +141,6 @@ $(document).ready(function() {
               $(".boxComments").prepend(notesDiv);
             }
           }); // End of APi Populate Note
-
           event.stopPropagation();
         });
 

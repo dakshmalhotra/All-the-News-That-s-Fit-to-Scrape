@@ -6,9 +6,11 @@ let db = require("../models"); // Require all models
 
 /////////////////////////////////////////////// /* Mongoose Configuration */ ////////////////////////////////////////////////////////
 mongoose.Promise = Promise; // Set mongoose to leverage Built in JavaScript ES6 Promises
-mongoose.connect("mongodb://heroku_n498q09l:nqhsgor6hvbhfudh35mk0npfo0@ds147267.mlab.com:47267/heroku_n498q09l", { // Connect to the Mongo DB
+mongoose.connect("mongodb://localhost/webScrapper", { // Connect to the Mongo DB
   useMongoClient: true
 });
+
+// mongodb://heroku_n498q09l:nqhsgor6hvbhfudh35mk0npfo0@ds147267.mlab.com:47267/heroku_n498q09l
 
 let mongooseConnection = mongoose.connection;
 
@@ -75,7 +77,7 @@ module.exports = (app) => { // Export Module Containing Routes. Called from Serv
   }); // Default Route
 
   /////////////////////////////////////////////// /* Post Requests */ ////////////////////////////////////////////////////////
-  app.post("/api/add", (req, res) => {
+  app.post("/api/add", (req, res) => { // Add Article Route
 
     // console.log("add path hit");
 
@@ -86,7 +88,7 @@ module.exports = (app) => { // Export Module Containing Routes. Called from Serv
     then(function(response) {
 
       if (response === null) { // Only Create Article if it has not been Created
-        db.Articles.create(articleObject).then((response) => console.log(response)).catch(err => res.json(err));
+        db.Articles.create(articleObject).then((response) => console.log(" ")).catch(err => res.json(err));
       } // End if
 
       // If we were able to successfully  save an Article, send a message to the client
@@ -117,7 +119,6 @@ module.exports = (app) => { // Export Module Containing Routes. Called from Serv
     let comment = req.body;
     db.Notes.findByIdAndRemove(comment["_id"]). // Look for the Comment and Remove from DB
     then(response => {
-      console.log(response);
       if (response) {
         res.send("Sucessfully Deleted");
       }
@@ -142,7 +143,6 @@ module.exports = (app) => { // Export Module Containing Routes. Called from Serv
         }
       });
     }).then(function(dbArticle) {
-      console.log("db Art is " + dbArticle);
       // If we were able to successfully update an Article, send it back to the client
       res.json(dbArticle);
     }).catch(function(err) {
@@ -162,13 +162,7 @@ module.exports = (app) => { // Export Module Containing Routes. Called from Serv
 
       if (response.note.length == 1) { // Note Has 1 Comment
 
-        // Formatting Result
-        let id = JSON.stringify(response.note).slice(1).replace("[", "").replace("]", "").substr(0, idLength);
-        let newID = id.replace(" \"", " ");
-        newID = JSON.stringify(newID);
-        newID = newID.replace(/"/g, "").replace(/[/\\*]/g, "");
-
-        db.Notes.findOne({'_id': newID}).then((comment) => {
+        db.Notes.findOne({'_id': response.note}).then((comment) => {
           comment = [comment];
           console.log("Sending Back One Comment");
           res.json(comment); // Send Comment back to the Client
@@ -176,6 +170,7 @@ module.exports = (app) => { // Export Module Containing Routes. Called from Serv
 
       } else { // Note Has 0 or more than 1 Comments
 
+        console.log("2")
         db.Notes.find({
           '_id': {
             "$in": response.note
