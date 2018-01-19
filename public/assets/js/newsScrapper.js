@@ -69,6 +69,35 @@ $(document).ready(function() {
           let title = $(this).children(".title").text();
           $('#articleID').text(title);
 
+
+          $(".addComment").on("click", function() { // Event Listener for Adding Comments
+
+            let note = $('#textarea1').val();
+
+            let noteObject = {
+              body: {
+                body: note
+              },
+              articleID: {
+                articleID: modalID
+              }
+            }
+
+            console.log(noteObject);
+
+            fetch("/api/createNotes", { // Send savedArticle to the Server
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify(noteObject)
+            }).then((response) => {
+              $("#textarea1").val("");
+              location.reload();
+            });
+          });
+
+
           fetch("/api/populateNote", { // Send savedArticle to the Server
             method: 'POST',
             headers: {
@@ -111,35 +140,7 @@ $(document).ready(function() {
               let notesDiv = "<div class='col s12 m7'><div class='card horizontal'><div class='card-image'><img src='https://lorempixel.com/100/190/nature/6'></div><div class='card-stacked center'><div class='card-content valign-wrapper'><p>No Notes.</p></div></div></div></div>";
               $(".boxComments").prepend(notesDiv);
             }
-
-          });
-
-          $(".addComment").on("click", function() { // Event Listener for Adding Comments
-
-            let note = $('#textarea1').val();
-
-            let noteObject = {
-              body: {
-                body: note
-              },
-              articleID: {
-                articleID: modalID
-              }
-            }
-
-            console.log(noteObject);
-
-            fetch("/api/createNotes", { // Send savedArticle to the Server
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json'
-              },
-              body: JSON.stringify(noteObject)
-            }).then((response) => {
-              $("#textarea1").val("");
-              location.reload();
-            });
-          });
+          }); // End of APi Populate Note
 
           event.stopPropagation();
         });
