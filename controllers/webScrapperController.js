@@ -140,11 +140,6 @@ module.exports = (app) => { // Export Module Containing Routes. Called from Serv
         $push: {
           note: dbNote._id
         }
-      }, {
-        safe: true,
-        upsert: true,
-        new: true,
-        runValidators: true
       });
     }).then(function(dbArticle) {
       console.log("db Art is " + dbArticle);

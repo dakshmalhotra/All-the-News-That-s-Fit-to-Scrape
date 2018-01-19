@@ -117,6 +117,7 @@ $(document).ready(function() {
           $(".addComment").on("click", function() { // Event Listener for Adding Comments
 
             let note = $('#textarea1').val();
+
             let noteObject = {
               body: {
                 body: note
@@ -135,6 +136,7 @@ $(document).ready(function() {
               },
               body: JSON.stringify(noteObject)
             }).then((response) => {
+              $("#textarea1").val("");
               location.reload();
             });
           });
