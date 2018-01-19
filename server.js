@@ -15,7 +15,7 @@ let app = express(); // Initialize Express
 
 /////////////////////////////////////////////// /* Configure middleware */ //////////////////////////////////////////////////////////
 
-app.use(logger("dev")); // Use morgan logger for logging requests
+// app.use(logger("dev")); // Use morgan logger for logging requests
 app.use(bodyParser.urlencoded({ extended: false })); // Use body-parser for handling form submissions
 app.use(bodyParser.json());
 app.use(express.static("public")); // Serve static content for the app from the "public" directory in the application directory.
