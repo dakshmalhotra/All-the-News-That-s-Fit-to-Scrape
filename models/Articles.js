@@ -28,13 +28,17 @@ let ArticleSchema = new Schema({ // Create a New Schema Constructor for News Art
     required: true
   },
 
+  slug: {
+    type: String
+  },
+
   // `comments` is an object that stores a Note id
   // The ref property links the ObjectId to the Note model
   // This allows us to populate the Article with an associated Comment
-  comments: {
+  note: [{
     type: Schema.Types.ObjectId,
-    ref: "comment"
-  }
+    ref: "Note"
+  }]
 
 }); // End of New Schema
 
